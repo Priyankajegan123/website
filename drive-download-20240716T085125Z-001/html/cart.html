@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Cosmetics Store</title>
+    <link rel="stylesheet" href="../style.css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Your Cart</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#products">Products</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="cart">
+            <h2>Shopping Cart</h2>
+            <div id="cart-items">
+                
+            </div>
+            <div id="cart-total">
+                <h3>Total:</h3>
+                <p id="total-amount">$0.00</p>
+                <button onclick="addtocart" class="buy-1" Buy Now></button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Cosmetics Store. All rights reserved.</p>
+    </footer>
+
+    <script src="../javascript/cart.js"></script>
+    <script>
+        
+        window.onload = function() {
+            displayCartItems(); 
+            calculateTotal();  
+        };
+
+        function displayCartItems() {
+            
+           
+            const cartItems = [
+                { name: 'Lipstick', price: 100.00 },
+                { name: 'Foundation', price: 200.00 },
+              
+            ];
+
+            const cartContainer = document.getElementById('cart-items');
+            cartContainer.innerHTML = ''; 
+
+            cartItems.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('cart-item');
+                itemElement.innerHTML = `
+                    <h3>${item.name}</h3>
+                    <p>$${item.price.toFixed(2)}</p>
+                `;
+                cartContainer.appendChild(itemElement);
+            });
+        }
+
+        function calculateTotal() {
+            
+            const cartItems = [
+                { name: 'Lipstick', price: 100.00 },
+                { name: 'Foundation', price: 200.00 },
+               
+            ];
+
+            const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
+            const totalElement = document.getElementById('total-amount');
+            totalElement.textContent = `$${totalAmount.toFixed(2)}`;
+        }
+
+        function checkout() {
+            
+            alert('Proceeding to checkout...'); 
+        }
+    </script>
+</body>
+</html>
